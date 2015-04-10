@@ -15,9 +15,20 @@
     ],
     "defaults": [
       "log      global",
-      "balance  roundrobin"
+      "balance  roundrobin",
+      "timeout connect 5s",
+      "timeout client 100s",
+      "timeout server 100s"
     ],
-    bind_address: "0.0.0.0"
+    "listen stats :1936": [
+      "mode http",
+      "stats enable",
+      "stats hide-version",
+      "stats realm Haproxy\ Statistics",
+      "stats uri /",
+      "stats auth Username:Password"
+    ],
+     "bind_address: "0.0.0.0"
   },
   "services": {
     "%%SYNAPSE_APP%%": {
@@ -40,4 +51,3 @@
     }
   }
 }
-
